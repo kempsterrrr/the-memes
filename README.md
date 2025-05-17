@@ -1,5 +1,7 @@
 # Arweave Name System (ArNS) Manifold.xyz Gallery Template
 
+> This repo is in active development howver the main branch should work. Feel free to [DM on X](https://x.com/kempsterrrr) or the [ARIO discord](https://discord.com/invite/HGG52EtTc2) with feedback or questions.
+
 This template provides a modern, decentralised solution for creating and hosting Manifold Art Galleries on Arweave Name System (ArNS).
 
 ## Features
