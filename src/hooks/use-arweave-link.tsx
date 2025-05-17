@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { wf } from "../lib/wayfinder"
 
 export function useArUrl(arLink: string) {
-  const [url, setUrl] = useState<URL | null>(null)
+  const [url, setUrl] = useState("/placeholder.svg")
 
   useEffect(() => {
     let cancelled = false
@@ -11,7 +11,7 @@ export function useArUrl(arLink: string) {
       .resolveUrl({ originalUrl: arLink })
       .then(u => {
         if (!cancelled) {
-          setUrl(u)
+          setUrl(u.toString())
         }
       })
       .catch(err => {

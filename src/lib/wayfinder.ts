@@ -8,7 +8,7 @@ const priorityRouter = new PriorityGatewayRouter({
     ario,
     sortBy: 'operatorStake',
     sortOrder: 'desc',
-    limit: 10,
+    limit: 2,
 })
 
 // set up a router that picks a random gateway each time

@@ -36,11 +36,9 @@ function NFTDialog({ nft, open, onOpenChange }: { nft: NFT, open: boolean, onOpe
           {/* Image section */}
           <div className="relative aspect-square md:aspect-auto md:h-full bg-black">
             <ArioImage
-              src={nft.image_url.replace(/https:\/\/arweave\.net\//g, 'ar://')|| "/placeholder.svg"}
+              src={nft.image_url.replace(/https:\/\/arweave\.net\//g, 'ar://')}
               alt={nft.name}
-              width={nft.image_details.width}
-              height={nft.image_details.height}
-              className="h-full w-full object-cover"
+              className={`h-full w-full object-cover`}
             />
           </div>
           {/* Details section */}
