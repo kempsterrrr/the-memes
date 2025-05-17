@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "get-metadata": "node src/scripts/get-metadata.js",
+    "create-and-assign-undernames": "node src/scripts/create-and-assign-undernames.js"
   },
   "dependencies": {
     "@ar.io/sdk": "3.11.0-alpha.8",

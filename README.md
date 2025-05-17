@@ -1,54 +1,81 @@
-# React + TypeScript + Vite
+# Arweave Name System (ArNS) Manifold.xyz Gallery Template
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This template provides a modern, decentralised solution for creating and hosting Manifold Art Galleries on Arweave Name System (ArNS).
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- ⚛️ React (Typescript) + Vite
+- 🎨 Modern response UI with Tailwind and Shadcn
+- 💾 Permanent storage on Arweave
+- 🌐 Hosted on Decentralised smart domains via [Arweave Name System (ArNS)](https://ar.io/arns)
+- 🦄 Unique ArNS subdomains for each artwork in your collection.
+- ⊹ Decentralised unruggable access via > 400 Gateways in [AR.IO Network](https://ar.io)
 
-## Expanding the ESLint configuration
+## How does this work?
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+AR.IO Network is a decentralised network of Arweave Gateways with over 400 active gateways. The gateways perform two roles:
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+1. Serve data stored on Arweave by requesting an Arweave transaction ID like so - gatewayurl/TxID (e.g. arweave.net/TxID).
+2. Serve Arweave Name System (ArNS) domains as subdomains.
+
+ArNS domains are simply Arweave transactions ID's associated with a human readable domain name which you can permissionlessly lease or purchase permannetly and retain fully control over via the ARIO protocol.
+
+This means as a Manifold creator, you can purchase decentralisd domain which only you control and access this as a subdomain of any of the 100s of gateways in the network, creating the first fully decentralised front end hosting solution.
+
+BONUS - AR.IO Network has recently launched the ar://wayfinder protocol. This allows developers to simply pass ar://TxID anywhere when reqesting data from Arweave and the protocol will intelligently route the data to gateways in the network and verifiy it's authenticity.
+
+This means no hard-coding URLs. So as well as having a decentralisd domainm, we achieve fully decentralised data access as well.
+
+## Prerequisites
+
+- Node.js (Latest LTS version recommended)
+- pnpm (v10.10.0 or later)
+- Basic understanding of React and TypeScript
+- An Arweave wallet
+- An Arweave Name System Domain (ArNS) + (check out [this video from Patrick Skinner](https://x.com/ar_io_network/status/1920456149754917127) on how to get yours)
+- A Manifold collection contract address
+
+## Getting Started
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/yourusername/arns-manifold-gallery.git
+cd arns-manifold-gallery
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. Install dependencies:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```bash
+pnpm install
 ```
+
+3. Run `cp .env.example .env` to create your local `.env` file and update the values following the comments in the `.env.example` file.
+
+4. Run `pnpm run get-metadata` to download the Arweave metadata for your Manifold Collection.
+
+5. Run `pnpm run create-and-assign-undernames` to assign each NFT in your collection a unique subdomian.
+
+6. Run `pnpm run dev` to run your gallery locally http://localhost:5173/
+
+The template has a pre-existing design but feel free to edit this to suit your taste 💅
+
+## Deploy your Manifold Gallery on Arweave Name System (ArNS)
+
+The easiest way to deploy your collection is for the command line:
+
+1. Create a local build of your project
+
+```
+pnpm run build
+```
+
+2. Uplodate the project to Arweave and assign it your ArNS name using permaweb deploy
+
+_Replace [your-arns-name] with your arns name before running this command._
+
+```
+DEPLOY_KEY=$(base64 -i wallet.json) npx permaweb-deploy --arns-name [your-arns-name]
+```
+
+It is also possible to deploy this using Github actions. The GH Action is written in `./github/workflows`, it has not been tested yet but should work if you follow the guide here in our docs https://docs.ar.io/guides/permaweb-deploy.
