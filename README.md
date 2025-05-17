@@ -78,4 +78,13 @@ _Replace [your-arns-name] with your arns name before running this command._
 DEPLOY_KEY=$(base64 -i wallet.json) npx permaweb-deploy --arns-name [your-arns-name]
 ```
 
-It is also possible to deploy this using Github actions. The GH Action is written in `./github/workflows`, it has not been tested yet but should work if you follow the guide here in our docs https://docs.ar.io/guides/permaweb-deploy.
+It is also possible to deploy this using Github actions. The GH Action is written in `./github/workflows`, it has not been tested yet but should work if you follow the guide here in our docs: https://docs.ar.io/guides/permaweb-deploy.
+
+## BOUNS WAYFINDER
+
+As mentioned above, the ar://awayfinder protocol removes the need to hard-code Gateway URLS for requeting data from Arweave. You simple and ar://TxID to instead of gatewayulr/txid wherever you're requesting data and the protocol will intelligently route your request to a gateway in the network. It also has functionality to verify the data being serve is what you're expecting.
+
+The protocol is in Alpha but is functioning. You can see how this is implemented on the following branches:
+
+- `wayfinder-routing` - this example routes all reqests for images to Arweave too different gateways in the network (fully functioning)
+- `verification` this example adds verification to those requests (WIP)
