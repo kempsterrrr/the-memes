@@ -2,6 +2,7 @@ import { useState } from "react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import collectionMetadata from "@/data/collection_metadata.json"
 import { Button } from "./ui/button"
+import ArioImage from "./ario-image"
 
 type NFT = {
   id: string
@@ -34,12 +35,10 @@ function NFTDialog({ nft, open, onOpenChange }: { nft: NFT, open: boolean, onOpe
         <div className="grid md:grid-cols-2 h-full">
           {/* Image section */}
           <div className="relative aspect-square md:aspect-auto md:h-full bg-black">
-            <img
-              src={nft.image_url || "/placeholder.svg"}
+            <ArioImage
+              src={nft.image_url.replace(/https:\/\/arweave\.net\//g, 'ar://')}
               alt={nft.name}
-              width={nft.image_details.width}
-              height={nft.image_details.height}
-              className="h-full w-full object-cover"
+              className={`h-full w-full object-cover`}
             />
           </div>
           {/* Details section */}
@@ -96,8 +95,8 @@ export function NFTGallery() {
             onClick={() => setSelectedNFT(nft)}
           >
             <div className="overflow-hidden rounded-t-lg">
-              <img
-                src={nft.image_url || "/placeholder.svg"}
+              <ArioImage
+                src={nft.image_url.replace(/https:\/\/arweave\.net\//g, 'ar://') || "../../public/placeholder.svg"}
                 alt={nft.name}
                 width={nft.image_details.width}
                 height={nft.image_details.height}

@@ -1,6 +1,6 @@
 import { NFTGallery } from "@/components/nft-gallery"
 import collectionMetadata from "@/data/collection_metadata.json"
-import DarkModeToggle from "@/components/DarkModeToggle"
+import DarkModeToggle from "@/components/dark-mode-toggle"
 
 function App() {
   
