@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react'
-import { wf } from "../lib/wayfinder"
+import { useWayfinder } from '../providers/wayfinder-provider'
 
-export function useArUrl(arLink: string) {
+export function useWayfinderUrl(arLink: string) {
+  const wayfinder = useWayfinder()
   const [url, setUrl] = useState("/placeholder.svg")
 
   useEffect(() => {
     let cancelled = false
 
-    wf
+    wayfinder
       .resolveUrl({ originalUrl: arLink })
       .then(u => {
         if (!cancelled) {
@@ -21,7 +22,7 @@ export function useArUrl(arLink: string) {
     return () => {
       cancelled = true
     }
-  }, [arLink])
+  }, [arLink, wayfinder])
 
   return url
 }

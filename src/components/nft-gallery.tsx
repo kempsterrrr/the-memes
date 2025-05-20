@@ -2,7 +2,7 @@ import { useState } from "react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import collectionMetadata from "@/data/collection_metadata.json"
 import { Button } from "./ui/button"
-import ArioImage from "./ario-image"
+import WayfinerImage from "./wayfinder-image"
 
 type NFT = {
   id: string
@@ -35,7 +35,7 @@ function NFTDialog({ nft, open, onOpenChange }: { nft: NFT, open: boolean, onOpe
         <div className="grid md:grid-cols-2 h-full">
           {/* Image section */}
           <div className="relative aspect-square md:aspect-auto md:h-full bg-black">
-            <ArioImage
+            <WayfinerImage
               src={nft.image_url.replace(/https:\/\/arweave\.net\//g, 'ar://')}
               alt={nft.name}
               className={`h-full w-full object-cover`}
@@ -95,7 +95,7 @@ export function NFTGallery() {
             onClick={() => setSelectedNFT(nft)}
           >
             <div className="overflow-hidden rounded-t-lg">
-              <ArioImage
+              <WayfinerImage
                 src={nft.image_url.replace(/https:\/\/arweave\.net\//g, 'ar://') || "../../public/placeholder.svg"}
                 alt={nft.name}
                 width={nft.image_details.width}
