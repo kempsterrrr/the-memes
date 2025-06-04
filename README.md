@@ -20,13 +20,92 @@ AR.IO Network is a decentralised network of Arweave Gateways with over 400 activ
 1. Serve data stored on Arweave by requesting an Arweave transaction ID like so - gatewayurl/TxID (e.g. arweave.net/TxID).
 2. Serve Arweave Name System (ArNS) domains as subdomains.
 
-ArNS domains are simply Arweave transactions ID's associated with a human readable domain name which you can permissionlessly lease or purchase permannetly and retain fully control over via the ARIO protocol.
+ArNS domains are simply Arweave transactions ID's associated with a human readable domain name which you can permissionlessly lease or purchase permannetly and retain full control over via the ARIO protocol.
 
-This means as a Manifold creator, you can purchase decentralisd domain which only you control and access this as a subdomain of any of the 100s of gateways in the network, creating the first fully decentralised front end hosting solution.
+This means as a Manifold creator, you can purchase decentralisd domain which only you control and access this as a subdomain of any of the 100s of gateways in the network, creating the first fully decentralised hosting solution for an Manifold NFT Gallery.
 
-BONUS - AR.IO Network has recently launched the ar://wayfinder protocol. This allows developers to simply pass ar://TxID anywhere when reqesting data from Arweave and the protocol will intelligently route the data to gateways in the network and verifiy it's authenticity.
+This solutions goes even further by using the ar://wayfinder protocol.
 
-This means no hard-coding URLs. So as well as having a decentralisd domainm, we achieve fully decentralised data access as well.
+Wayfinder allows you to simple use ar://TxID || ar://arnsname in your app when requesting data from Arwewave (e.g. `<img scr="ar://TxID" />) and will route these request to gateways in the network, decentralising access by removing the need to hard code gateway URLs.
+
+### Using Wayfinder
+---
+
+This application implements the Wayfinder protocol from AR.IO Network to provide decentralized access to Arweave content. Here's how it works:
+
+#### Implementation Details
+
+1. **WayfinderProvider**
+   - The app uses a `WayfinderProvider` component that wraps the entire application
+   - Configurable options include:
+     - Network selection (mainnet/testnet)
+     - Gateway configuration
+     - Priority routing options
+     - Verification settings
+     - Cache settings
+     - HTTP client options
+
+2. **WayfinderImage Component**
+   - A custom `WayfinderImage` component that handles Arweave content loading
+   - Automatically converts Arweave URLs to the `ar://` protocol
+   - Includes fallback handling for failed loads
+   - Supports lazy loading and async decoding
+
+3. **URL Resolution**
+   - Uses the `useWayfinderUrl` hook to resolve Arweave content URLs
+   - Automatically handles gateway routing and verification
+   - Provides error handling and fallback mechanisms
+
+#### Usage Example
+
+```tsx
+// Using the WayfinderImage component
+<WayfinderImage
+  src="ar://TxID"  // or "ar://arnsname"
+  alt="Description"
+  width={800}
+  height={600}
+  fallbackSrc="/placeholder.svg"
+/>
+```
+
+#### Benefits
+
+- **Decentralized Access**: Content is served through multiple gateways in the AR.IO Network
+- **Automatic Routing**: No need to hardcode gateway URLs
+- **Verification**: Optional content verification to ensure data integrity
+- **Caching**: Built-in caching for improved performance
+- **Error Handling**: Graceful fallbacks for failed content loads
+
+#### Configuration
+
+The Wayfinder implementation can be customized through the `WayfinderProvider` options:
+
+```tsx
+<WayfinderProvider
+  options={{
+    network: 'mainnet',
+    usePriorityRouter: true,
+    priorityOptions: {
+      sortBy: 'operatorStake',
+      sortOrder: 'desc',
+      limit: 2
+    },
+    verification: {
+      enabled: true,
+      timeout: 5000,
+      maxRetries: 3
+    },
+    cache: {
+      enabled: true,
+      ttl: 3600,
+      maxSize: 1000
+    }
+  }}
+>
+  {/* Your app content */}
+</WayfinderProvider>
+```
 
 ## Prerequisites
 
@@ -81,12 +160,3 @@ DEPLOY_KEY=$(base64 -i wallet.json) npx permaweb-deploy --arns-name [your-arns-n
 ```
 
 It is also possible to deploy this using Github actions. The GH Action is written in `./github/workflows`, it has not been tested yet but should work if you follow the guide here in our docs: https://docs.ar.io/guides/permaweb-deploy.
-
-## BOUNS WAYFINDER
-
-As mentioned above, the ar://awayfinder protocol removes the need to hard-code Gateway URLS for requeting data from Arweave. You simple and ar://TxID to instead of gatewayulr/txid wherever you're requesting data and the protocol will intelligently route your request to a gateway in the network. It also has functionality to verify the data being serve is what you're expecting.
-
-The protocol is in Alpha but is functioning. You can see how this is implemented on the following branches:
-
-- `wayfinder-routing` - this example routes all reqests for images to Arweave too different gateways in the network (fully functioning)
-- `verification` this example adds verification to those requests (WIP)
