@@ -28,3 +28,4 @@ jobs:
           CONTRACT_ADDRESS: ${{ secrets.CONTRACT_ADDRESS }}
           DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
           ARNS_NAME: ${{ secrets.ARNS_NAME }}
+          WALLET_JSON: ${{ secrets.WALLET_JSON }}
