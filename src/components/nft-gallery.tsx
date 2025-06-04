@@ -94,13 +94,18 @@ export function NFTGallery() {
             className="group relative overflow-hidden rounded-lg border bg-background shadow-sm transition-all hover:shadow-md dark:hover:shadow-lg dark:hover:shadow-primary/5 mb-6 break-inside-avoid"
             onClick={() => setSelectedNFT(nft)}
           >
-            <div className="overflow-hidden rounded-t-lg">
+            <div 
+              className="overflow-hidden rounded-t-lg"
+              style={{
+                aspectRatio: `${nft.image_details.width} / ${nft.image_details.height}`
+              }}
+            >
               <WayfinerImage
-                src={nft.image_url.replace(/https:\/\/arweave\.net\//g, 'ar://') || "../../public/placeholder.svg"}
+                src={nft.image_url.replace(/https:\/\/arweave\.net\//g, 'ar://')}
                 alt={nft.name}
                 width={nft.image_details.width}
                 height={nft.image_details.height}
-                className="w-full transition-transform duration-300 group-hover:scale-105"
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
               />
             </div>
             <div className="bg-background p-4 rounded-b-lg border-t">
