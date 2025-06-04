@@ -1,43 +1,33 @@
-name: Deploy to Arweave
+name: publish
 
 on:
   push:
     branches:
-      - main
+      - 'main'
+
 jobs:
-  deploy:
-    if: ${{ always() }}
+  publish:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      deployments: write
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v2
 
-      - name: Install Misc. Deps
-        run: sudo apt-get install -y libcairo2-dev libjpeg8-dev libpango1.0-dev libgif-dev build-essential g++
-
-      - name: Install corepack
-        run: npm i -g corepack
-
-      - name: Install pnpm
-        run: npm i -g --force corepack && corepack enable pnpm
-
-      - name: Install Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v1
         with:
-          node-version: 20
-          cache: "pnpm"
+          node-version: 20.x
 
-      - run: pnpm install --frozen-lockfile
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
 
-      - name: Comparison of locales for missing keys
-        run: pnpm compare-locales
+      - run: pnpm install
 
-      - name: Publish to Arweave
-        # deploy:arweave calls buildandexport
-        run: pnpm deploy:arweave
+      - name: Fetch NFT Metadata
+        run: node src/scripts/get-metadata.js
+        env:
+          RPC_URL: ${{ secrets.RPC_URL }}
+          CONTRACT_ADDRESS: ${{ env.CONTRACT_ADDRESS }}
+
+      - run: pnpm run deploy-main
         env:
           DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
-          ARNS_NAME: ${{ secrets.ARNS_NAME }}
+          ARNS_NAME: ${{ env.ARNS_NAME }}

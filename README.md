@@ -133,6 +133,27 @@ pnpm install
 
 3. Run `cp .env.example .env` to create your local `.env` file and update the values following the comments in the `.env.example` file.
 
+### Environment Variables
+
+Create a `.env` file in the root directory with the following variables:
+
+```bash
+# Ethereum RPC URL for fetching NFT metadata
+RPC_URL=https://your-ethereum-rpc-url
+
+# Your Manifold NFT contract address
+CONTRACT_ADDRESS=0x...
+
+# Your ArNS domain name (e.g., mygallery.ar)
+ARNS_NAME=your-arns-name
+
+# Arweave wallet keyfile (base64 encoded)
+# You can generate this by running: base64 -i wallet.json
+DEPLOY_KEY=your-base64-encoded-wallet
+```
+
+> Note: Make sure to keep your `DEPLOY_KEY` secure and never commit it to version control.
+
 4. Run `pnpm run get-metadata` to download the Arweave metadata for your Manifold Collection.
 
 5. Run `pnpm run create-and-assign-undernames` to assign each NFT in your collection a unique subdomian.

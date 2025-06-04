@@ -8,13 +8,13 @@ import dotenv from 'dotenv';
 // Load environment variables
 dotenv.config();
 
-const ETH_NODE_URL = process.env.ETH_NODE_URL;
+const RPC_URL = process.env.RPC_URL;
 const CONTRACT_ADDRESS = process.env.CONTRACT_ADDRESS;
 const DATA_DIR = path.join(process.cwd(), 'src', 'data');
 const OUTPUT_FILE = path.join(DATA_DIR, "collection_metadata.json");
 
 // Validate required environment variables
-if (!ETH_NODE_URL || !CONTRACT_ADDRESS) {
+if (!RPC_URL || !CONTRACT_ADDRESS) {
   console.error('Error: Missing required environment variables. Please check your .env file.');
   process.exit(1);
 }
@@ -73,7 +73,7 @@ async function findLastTokenId(client, contractAddress) {
 }
 
 async function fetchAllMetadata(contractAddress) {
-  const transport = http(ETH_NODE_URL);
+  const transport = http(RPC_URL);
   const client = createPublicClient({
     chain: mainnet,
     transport
