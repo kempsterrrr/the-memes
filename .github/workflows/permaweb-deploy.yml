@@ -21,6 +21,9 @@ jobs:
 
       - run: pnpm install
 
+      - name: Create wallet.json
+        run: echo '${{ secrets.DEPLOY_KEY }}' | base64 -d > wallet.json
+
       - name: Deploy to Arweave
         run: pnpm run deploy:arns
         env:
