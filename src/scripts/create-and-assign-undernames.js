@@ -43,23 +43,51 @@ async function increaseUndernameLimit({name, qty}) {
     return
 }
 
+function sanitizeUndername(name) {
+    // Convert to lowercase
+    let sanitized = name.toLowerCase();
+    
+    // Replace apostrophes and other special characters with empty string
+    sanitized = sanitized.replace(/['"]/g, '');
+    
+    // Replace spaces and other special characters with hyphens
+    sanitized = sanitized.replace(/[^a-z0-9]+/g, '-');
+    
+    // Remove leading and trailing hyphens
+    sanitized = sanitized.replace(/^-+|-+$/g, '');
+    
+    // Ensure the name is not too long (ArNS has a limit)
+    const MAX_LENGTH = 63; // Standard DNS label length limit
+    if (sanitized.length > MAX_LENGTH) {
+        sanitized = sanitized.substring(0, MAX_LENGTH);
+        // Remove trailing hyphen if it exists after truncation
+        sanitized = sanitized.replace(/-+$/, '');
+    }
+    
+    return sanitized;
+}
 
 async function createAndAssignUndernames({ant, undername, transactionId, ttlSeconds}) {
+    let txId;
     try {
+        // Sanitize the undername
+        const sanitizedUndername = sanitizeUndername(undername);
+        
         // Extract just the transaction ID from the Arweave URL
-        const txId = transactionId.split('/').pop().replace(/[^a-zA-Z0-9-]/g, '');
+        // Remove everything before and including the last '/'
+        txId = transactionId.split('/').pop();
         
         const result = await ant.setUndernameRecord({
             name: ARNS_NAME,  // The parent ARNS name
-            undername: undername,
+            undername: sanitizedUndername,
             transactionId: txId,
             ttlSeconds: ttlSeconds,
         });
         
-        console.log(`Created undername ${undername} with transaction ID: ${txId}`);
+        console.log(`Created undername ${sanitizedUndername} with transaction ID: ${txId}`);
         return result;
     } catch (error) {
-        console.error(`Error creating undername ${undername}:`, error);
+        console.error(`Error creating undername ${undername} with transaction ID: ${txId}:`, error);
         throw error;
     }
 }
@@ -88,10 +116,11 @@ async function main() {
 
     // Use Promise.all to handle all async operations
     const undernamePromises = Object.entries(data).map(async ([id, item]) => {
-        const undername = `${item.name.replace(/\s+/g, '-')}`;
+        // Sanitize the undername before passing it to createAndAssignUndernames
+        const sanitizedUndername = sanitizeUndername(item.name);
         const transactionId = item.image;
         const ttlSeconds = 900;
-        return createAndAssignUndernames({ant, undername, transactionId, ttlSeconds});
+        return createAndAssignUndernames({ant, undername: sanitizedUndername, transactionId, ttlSeconds});
     });
 
     try {
