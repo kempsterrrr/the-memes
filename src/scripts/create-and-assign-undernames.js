@@ -10,7 +10,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const data = JSON.parse(readFileSync(join(__dirname, '../data/collection_metadata.json'), 'utf8'));
-const wallet = JSON.parse(readFileSync(join(__dirname, '../../wallet.json'), 'utf8'));
+const wallet = process.env.NODE_ENV === 'production' 
+  ? JSON.parse(process.env.WALLET_JSON)
+  : JSON.parse(readFileSync(join(__dirname, '../../wallet.json'), 'utf8'));
 
 if (!process.env.ARNS_NAME) {
     throw new Error('ARNS_NAME environment variable is not set');
