@@ -25,9 +25,9 @@ jobs:
         run: node src/scripts/get-metadata.js
         env:
           RPC_URL: ${{ secrets.RPC_URL }}
-          CONTRACT_ADDRESS: ${{ env.CONTRACT_ADDRESS }}
+          CONTRACT_ADDRESS: ${{ secrets.CONTRACT_ADDRESS }}
 
       - run: pnpm run deploy-main
         env:
           DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
-          ARNS_NAME: ${{ env.ARNS_NAME }}
+          ARNS_NAME: ${{ secrets.ARNS_NAME }}
