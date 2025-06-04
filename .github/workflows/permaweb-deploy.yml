@@ -21,13 +21,10 @@ jobs:
 
       - run: pnpm install
 
-      - name: Fetch NFT Metadata
-        run: node src/scripts/get-metadata.js
+      - name: Deploy to Arweave
+        run: pnpm run deploy:arns
         env:
           RPC_URL: ${{ secrets.RPC_URL }}
           CONTRACT_ADDRESS: ${{ secrets.CONTRACT_ADDRESS }}
-
-      - run: pnpm run deploy:arns
-        env:
           DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
           ARNS_NAME: ${{ secrets.ARNS_NAME }}
