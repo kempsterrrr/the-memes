@@ -3,6 +3,8 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import collectionMetadata from "@/data/collection_metadata.json"
 import { Button } from "./ui/button"
 import WayfinerImage from "./wayfinder-image"
+import WayfinderLink from "./wayfinder-link"
+import { sanitizeUndername } from "@/lib/utils"
 
 type NFT = {
   id: string
@@ -29,6 +31,17 @@ const nfts: NFT[] = Object.entries(collectionMetadata).map(([id, data]) => ({
 }))
 
 function NFTDialog({ nft, open, onOpenChange }: { nft: NFT, open: boolean, onOpenChange: (open: boolean) => void }) {
+  // Use the sanitization function from utils
+  const sanitizedUndername = sanitizeUndername(nft.name)
+  const arnsUrl = `${sanitizedUndername}_manifoldtest`
+  
+  console.log('🏷️  Constructing ArNS name for NFT:', nft.name, '→', sanitizedUndername, '→', arnsUrl)
+  console.log('🔢  NFT ID:', nft.id, 'Is First Item:', nft.id === '1')
+  
+  // Add timing information to see if there's a difference in when first vs other items resolve
+  const dialogOpenTime = Date.now()
+  console.log('⏰  Dialog opened at:', dialogOpenTime, 'for NFT:', nft.name)
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[900px] p-0 overflow-hidden">
@@ -36,7 +49,7 @@ function NFTDialog({ nft, open, onOpenChange }: { nft: NFT, open: boolean, onOpe
           {/* Image section */}
           <div className="relative aspect-square md:aspect-auto md:h-full bg-black">
             <WayfinerImage
-              src={nft.image_url.replace(/https:\/\/arweave\.net\//g, 'ar://')}
+              src={nft.image_url.replace(/https:\/\/arweave\.net\//g, '')}
               alt={nft.name}
               className={`h-full w-full object-cover`}
             />
@@ -73,7 +86,11 @@ function NFTDialog({ nft, open, onOpenChange }: { nft: NFT, open: boolean, onOpe
             </div>
             {/* Action row */}
             <div className="flex justify-between items-center mt-6">
-              <Button variant="default" className="cursor-pointer" size="lg"><a href={`https://` + nft.name.replace(/\s+/g, '-') + `_manifoldtest.arweave.net`} target="_blank" rel="noopener noreferrer">View Full Image</a></Button>
+              <Button variant="default" className="cursor-pointer" size="lg">
+                <WayfinderLink href={arnsUrl} target="_blank" rel="noopener noreferrer">
+                  View Full Image
+                </WayfinderLink>
+              </Button>
             </div>
           </div>
         </div>
@@ -101,7 +118,7 @@ export function NFTGallery() {
               }}
             >
               <WayfinerImage
-                src={nft.image_url.replace(/https:\/\/arweave\.net\//g, 'ar://')}
+                src={nft.image_url.replace(/https:\/\/arweave\.net\//g, '')}
                 alt={nft.name}
                 width={nft.image_details.width}
                 height={nft.image_details.height}

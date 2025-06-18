@@ -1,4 +1,6 @@
-import { WayfinderProvider } from './providers/wayfinder-provider'
+import { WayfinderProvider } from '@ar.io/wayfinder-react';
+import { NetworkGatewaysProvider, SimpleCacheGatewaysProvider } from '@ar.io/wayfinder-core';
+import { ARIO } from '@ar.io/sdk';
 import { NFTGallery } from "@/components/nft-gallery"
 import collectionMetadata from "@/data/collection_metadata.json"
 import DarkModeToggle from "@/components/dark-mode-toggle"
@@ -6,7 +8,13 @@ import DarkModeToggle from "@/components/dark-mode-toggle"
 function App() {
   
   return (
-    <WayfinderProvider>
+    <WayfinderProvider gatewaysProvider={new SimpleCacheGatewaysProvider({ 
+      gatewaysProvider: new NetworkGatewaysProvider({ 
+         ario: ARIO.mainnet(), 
+         limit: 3 // target the top 3 gateways
+       }), 
+       ttlSeconds: 60 * 60 
+     })}>
       <div className="flex min-h-screen flex-col">
         <header className="sticky top-0 z-10 border-b bg-background/80 backdrop-blur-sm">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex h-16 items-center justify-between py-4">

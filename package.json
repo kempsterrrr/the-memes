@@ -14,6 +14,8 @@
   },
   "dependencies": {
     "@ar.io/sdk": "3.11.0-alpha.8",
+    "@ar.io/wayfinder-core": "0.0.5-alpha.2",
+    "@ar.io/wayfinder-react": "0.0.5-alpha.2",
     "@radix-ui/react-dialog": "^1.1.13",
     "@radix-ui/react-slot": "^1.2.2",
     "@tailwindcss/vite": "^4.1.6",

@@ -11,6 +11,12 @@ importers:
       '@ar.io/sdk':
         specifier: 3.11.0-alpha.8
         version: 3.11.0-alpha.8(bufferutil@4.0.9)(utf-8-validate@5.0.10)
+      '@ar.io/wayfinder-core':
+        specifier: 0.0.5-alpha.2
+        version: 0.0.5-alpha.2(@ar.io/sdk@3.11.0-alpha.8(bufferutil@4.0.9)(utf-8-validate@5.0.10))(bufferutil@4.0.9)(utf-8-validate@5.0.10)
+      '@ar.io/wayfinder-react':
+        specifier: 0.0.5-alpha.2
+        version: 0.0.5-alpha.2(@ar.io/sdk@3.11.0-alpha.8(bufferutil@4.0.9)(utf-8-validate@5.0.10))(bufferutil@4.0.9)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(utf-8-validate@5.0.10)
       '@radix-ui/react-dialog':
         specifier: ^1.1.13
         version: 1.1.13(@types/react-dom@19.1.5(@types/react@19.1.4))(@types/react@19.1.4)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -118,6 +124,22 @@ packages:
     resolution: {integrity: sha512-BBzhCD1rQ/FlEzW0m0eT3LP5j/sVFtLytJs6ZGOrDgu7EbAtGBmCpzHy3mCTI/YZpRbGfLLEgUPoZ2XgUf4i/g==}
     engines: {node: '>=18'}
     hasBin: true
+
+  '@ar.io/wayfinder-core@0.0.5-alpha.1':
+    resolution: {integrity: sha512-kwyfYBaDbw6mjES8F9p+vpyyR4ln0VaARBlzrK9zYjzueoCghag8hGJzXQ6oxqkUNCOSStL8XdPXVtSJGgeWSg==}
+    peerDependencies:
+      '@ar.io/sdk': '>=3.12.0'
+
+  '@ar.io/wayfinder-core@0.0.5-alpha.2':
+    resolution: {integrity: sha512-Z8QKZhAWrRpQeVY8zXVwdRnVLn9b3SIM8BXC4jRNgXiFwPOz5J0VPpzcw+nzCqMyJgDVDnU0i4792zldNuQqXQ==}
+    peerDependencies:
+      '@ar.io/sdk': '>=3.12.0'
+
+  '@ar.io/wayfinder-react@0.0.5-alpha.2':
+    resolution: {integrity: sha512-efO7ih+5xC+G8MJqRdh5GqO9kXNoTvfhy8lsFm3eeYzB5D2V11dQUP+BSMTceklYTnYWGhUifHhra9PT1KcnEw==}
+    peerDependencies:
+      react: ^18.0.0
+      react-dom: ^18.0.0
 
   '@ardrive/turbo-sdk@1.26.0':
     resolution: {integrity: sha512-WIozRs8UzUDtf6gKZHldbILK5F7gK1n7HYyaxDvsLdUTwm9PIqqlchBGB/KvV8RK0IqrXXO3uN68Ccxa0FgDIQ==}
@@ -2550,6 +2572,9 @@ packages:
     resolution: {integrity: sha512-g6QUff04oZpHs0eG5p83rFLhHeV00ug/Yf9nZM6fLeUrPguBTkTQOdpAWWspMh55TZfVQDPaN3NQJfbVRAxdIw==}
     engines: {iojs: '>=1.0.0', node: '>=0.10.0'}
 
+  rfc4648@1.5.4:
+    resolution: {integrity: sha512-rRg/6Lb+IGfJqO05HZkN50UtY7K/JhxJag1kP23+zyMfrvoB0B7RWv06MbOzoc79RgCdNTiUaNsTT1AJZ7Z+cg==}
+
   ripemd160@2.0.2:
     resolution: {integrity: sha512-ii4iagi25WusVoiC4B4lq7pbXfAp3D9v5CwfkY33vffw2+pkDjY1D8GaN7spsxvCSx8dkPqOZCEZyfxcmJG2IA==}
 
@@ -3104,6 +3129,43 @@ snapshots:
       - debug
       - encoding
       - supports-color
+      - utf-8-validate
+
+  '@ar.io/wayfinder-core@0.0.5-alpha.1(@ar.io/sdk@3.11.0-alpha.8(bufferutil@4.0.9)(utf-8-validate@5.0.10))(bufferutil@4.0.9)(utf-8-validate@5.0.10)':
+    dependencies:
+      '@ar.io/sdk': 3.11.0-alpha.8(bufferutil@4.0.9)(utf-8-validate@5.0.10)
+      '@dha-team/arbundles': 1.0.3(bufferutil@4.0.9)(utf-8-validate@5.0.10)
+      arweave: 1.15.7
+      eventemitter3: 5.0.1
+      plimit-lit: 3.0.1
+      rfc4648: 1.5.4
+    transitivePeerDependencies:
+      - bufferutil
+      - encoding
+      - utf-8-validate
+
+  '@ar.io/wayfinder-core@0.0.5-alpha.2(@ar.io/sdk@3.11.0-alpha.8(bufferutil@4.0.9)(utf-8-validate@5.0.10))(bufferutil@4.0.9)(utf-8-validate@5.0.10)':
+    dependencies:
+      '@ar.io/sdk': 3.11.0-alpha.8(bufferutil@4.0.9)(utf-8-validate@5.0.10)
+      '@dha-team/arbundles': 1.0.3(bufferutil@4.0.9)(utf-8-validate@5.0.10)
+      arweave: 1.15.7
+      eventemitter3: 5.0.1
+      plimit-lit: 3.0.1
+      rfc4648: 1.5.4
+    transitivePeerDependencies:
+      - bufferutil
+      - encoding
+      - utf-8-validate
+
+  '@ar.io/wayfinder-react@0.0.5-alpha.2(@ar.io/sdk@3.11.0-alpha.8(bufferutil@4.0.9)(utf-8-validate@5.0.10))(bufferutil@4.0.9)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(utf-8-validate@5.0.10)':
+    dependencies:
+      '@ar.io/wayfinder-core': 0.0.5-alpha.1(@ar.io/sdk@3.11.0-alpha.8(bufferutil@4.0.9)(utf-8-validate@5.0.10))(bufferutil@4.0.9)(utf-8-validate@5.0.10)
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
+    transitivePeerDependencies:
+      - '@ar.io/sdk'
+      - bufferutil
+      - encoding
       - utf-8-validate
 
   '@ardrive/turbo-sdk@1.26.0(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)':
@@ -5872,6 +5934,8 @@ snapshots:
   resolve-from@4.0.0: {}
 
   reusify@1.1.0: {}
+
+  rfc4648@1.5.4: {}
 
   ripemd160@2.0.2:
     dependencies:
