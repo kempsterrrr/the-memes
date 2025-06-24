@@ -15,7 +15,7 @@ function App() {
        }), 
        ttlSeconds: 60 * 60 
      })}>
-      <div className="flex min-h-screen flex-col">
+      <div className="min-h-screen bg-[#1a1a1a] text-white">
         <header className="sticky top-0 z-10 border-b bg-background/80 backdrop-blur-sm">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex h-16 items-center justify-between py-4">
             <a href="/" className="flex items-center space-x-2">

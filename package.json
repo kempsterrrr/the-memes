@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "get-metadata": "node src/scripts/get-metadata.js",
     "create-and-assign-undernames": "node src/scripts/create-and-assign-undernames.js",
-    "deploy:arns": "pnpm run get-metadata && pnpm run create-and-assign-undernames && pnpm build && permaweb-deploy --arns-name $ARNS_NAME --deploy_key $DEPLOY_KEY"
+    "deploy:arns": "pnpm run get-metadata && pnpm run create-and-assign-undernames && pnpm build && permaweb-deploy --arns-name $ARNS_NAME --deploy_key $DEPLOY_KEY --ario-process testnet"
   },
   "dependencies": {
     "@ar.io/sdk": "3.11.0-alpha.8",
