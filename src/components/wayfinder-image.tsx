@@ -1,5 +1,4 @@
-import { useWayfinder } from "@ar.io/wayfinder-react"
-import { useEffect, useState } from "react"
+import { useWayfinderUrl } from "@ar.io/wayfinder-react"
 
 type WayfinerImage = React.ImgHTMLAttributes<HTMLImageElement> & {
   src: string
@@ -17,28 +16,31 @@ export default function WayfinerImage({
   className = "",
   ...rest 
 }: WayfinerImage) {
-  const { wayfinder } = useWayfinder()
-  const [wayfinderUrl, setWayfinderUrl] = useState<URL | null>(null)
+  // const { wayfinder } = useWayfinder()
+  // const [wayfinderUrl, setWayfinderUrl] = useState<URL | null>(null)
 
   console.log('🔍 WayfinderImage src:', src)
 
-  useEffect(() => { 
-    const resolveUrl = async () => {
-      try {
-        const wayfinderUrl = await wayfinder.resolveUrl({ originalUrl: `ar://${src}`})
-        console.log('🔍 WayfinderImage wayfinderUrl:', wayfinderUrl)
-        setWayfinderUrl(wayfinderUrl);
-      } catch (error) {
-        console.log('🔍 WayfinderImage error:', error)
-      }
-    };
-    resolveUrl();
-  }, [src, wayfinder]);
+  // useEffect(() => { 
+  //   const resolveUrl = async () => {
+  //     try {
+  //       const wayfinderUrl = await wayfinder.resolveUrl({ originalUrl: `ar://${src}`})
+  //       console.log('🔍 WayfinderImage wayfinderUrl:', wayfinderUrl)
+  //       setWayfinderUrl(wayfinderUrl);
+  //     } catch (error) {
+  //       console.log('🔍 WayfinderImage error:', error)
+  //     }
+  //   };
+  //   resolveUrl();
+  // }, [src, wayfinder]);
 
+  const { resolvedUrl, error } = useWayfinderUrl({ txId: src })
+  console.log('🔍 WayfinderImage resolvedUrl:', resolvedUrl)
+  console.log('🔍 WayfinderImage error:', error)
 
   return (
     <img 
-      src={wayfinderUrl?.toString() || fallbackSrc} 
+      src={resolvedUrl || fallbackSrc} 
       alt={alt}
       loading="lazy"
       decoding="async"

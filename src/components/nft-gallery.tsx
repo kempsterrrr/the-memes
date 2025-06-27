@@ -4,7 +4,11 @@ import collectionMetadata from "@/data/collection_metadata.json"
 import { Button } from "./ui/button"
 import WayfinerImage from "./wayfinder-image"
 import WayfinderLink from "./wayfinder-link"
+import { ExternalLink } from "lucide-react"
 // import { sanitizeUndername } from "@/lib/utils"
+import OpenseaLogo from "@/assets/opensea-logo.svg"
+import MagicEdenLogo from "@/assets/magic-eden-logo.svg"
+import RaribleLogo from "@/assets/rarible-logo.svg"
 
 type NFT = {
   id: string
@@ -14,6 +18,11 @@ type NFT = {
   description: string
   image: string
   image_url: string
+  attributes: {
+    trait_type: string
+    value: string
+    display_type: string
+  }[]
   image_details: {
     width: number
     height: number
@@ -31,7 +40,8 @@ const nfts: NFT[] = Object.entries(collectionMetadata)
   description: data.description,
   image: data.image,
   image_url: data.image_url,
-  image_details: data.image_details
+  image_details: data.image_details,
+  attributes: data.attributes
 }))
 
 function NFTDialog({ nft, open, onOpenChange }: { nft: NFT, open: boolean, onOpenChange: (open: boolean) => void }) {
@@ -51,53 +61,91 @@ function NFTDialog({ nft, open, onOpenChange }: { nft: NFT, open: boolean, onOpe
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[900px] p-0 overflow-hidden">
-        <div className="grid md:grid-cols-2 h-full">
+      <DialogContent className="sm:max-w-[900px] max-h-[95vh] p-0 overflow-hidden">
+        <div className="flex flex-col md:grid md:grid-cols-2 max-h-[95vh]">
           {/* Image section */}
-          <div className="relative aspect-square md:aspect-auto md:h-full bg-black">
+          <div className="relative aspect-square md:aspect-auto md:h-full bg-black flex-shrink-0">
             <WayfinerImage
               src={nft.image_url.replace(/https:\/\/arweave\.net\//g, '')}
               alt={nft.name}
-              className={`h-full w-full object-cover`}
+              className="h-full w-full object-cover"
             />
           </div>
           {/* Details section */}
-          <div className="flex flex-col p-6" style={{ maxHeight: '90vh' }}>
+          <div className="flex flex-col p-4 md:p-6 overflow-y-auto flex-1 min-h-0">
             {/* Header */}
-            <DialogHeader>
-              <DialogTitle className="text-3xl font-bold leading-tight">{nft.name}</DialogTitle>
-              <div className="text-lg font-medium text-muted-foreground mb-4">by {nft.created_by}</div>
+            <DialogHeader className="flex-shrink-0">
+              <DialogTitle className="text-2xl md:text-3xl font-bold leading-tight">{nft.name}</DialogTitle>
+              <div className="text-base md:text-lg font-medium text-muted-foreground mb-4">by {nft.created_by}</div>
               <hr className="my-2" />
             </DialogHeader>
-            {/* About section with show more */}
-            <div className="py-6 flex-grow">
+            {/* About section */}
+            <div className="py-4 md:py-6 flex-shrink-0">
               <h4 className="text-sm font-medium mb-3">About this artwork</h4>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {nft.description}
-                </p>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                {nft.description}
+              </p>
             </div>
             {/* Artwork Details */}
-            <div className="pt-4 border-t mt-auto">
-              <h4 className="text-sm font-medium mb-3">Artwork Details</h4>
-              <div className="space-y-3 bg-muted/40 rounded-md p-4">
-                    <div className="flex justify-between text-sm">
-                      <span className="text-muted-foreground">Format</span>
-                      <span className="font-medium">{nft.image_details.format}</span>
-                    </div>
-                    <div className="flex justify-between text-sm">
-                      <span className="text-muted-foreground">Dimensions</span>
-                      <span className="font-medium">{nft.image_details.width} × {nft.image_details.height}</span>
-                    </div>
-    
+            <div className="pt-4 border-t flex-shrink-0">
+              <h4 className="text-sm font-medium mb-3">Info</h4>
+              <div className="space-y-3 bg-muted/40 rounded-md p-3 md:p-4">
+                <div className="flex flex-col sm:flex-row sm:justify-between text-sm gap-1">
+                  <span className="text-muted-foreground text-xs sm:text-sm break-all">0x714a1a6ea4cb1d3f5199f51e813adf442aa8344f</span>
+                  {/* <span className="font-medium">Contract</span> */}
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-muted-foreground">Base</span>
+                  {/* <span className="font-medium">Chain</span> */}
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-muted-foreground">{`#${nft.id}`}</span>
+                  {/* <span className="font-medium">ID</span> */}
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-muted-foreground">ERC-721</span>
+                  {/* <span className="font-medium">Token Spec</span> */}
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-muted-foreground">{nft.image_details.width} × {nft.image_details.height}</span>
+                  {/* <span className="font-medium">Dimensions</span> */}
+                </div>
+              </div>
+            </div>
+            {/* Artwork Attributes */}
+            <div className="pt-4 border-t flex-shrink-0">
+              <h4 className="text-sm font-medium mb-3">Attributes</h4>
+              <div className="space-y-3 bg-muted/40 rounded-md p-3 md:p-4">
+                {nft.attributes.map((attribute, index) => (
+                  <div key={index} className="flex flex-col sm:flex-row sm:justify-between text-sm gap-1">
+                    <span className="text-muted-foreground break-words">{attribute.trait_type}</span>
+                    <span className="font-medium break-words">{attribute.value}</span>
                   </div>
+                ))}
+              </div>
             </div>
             {/* Action row */}
-            <div className="flex justify-between items-center mt-6">
-              <Button variant="default" className="cursor-pointer" size="lg">
-                <WayfinderLink href={arnsUrl} target="_blank" rel="noopener noreferrer">
-                  View Full Image
-                </WayfinderLink>
-              </Button>
+            <div className="flex flex-col md:flex-row justify-around gap-4 pt-4 mt-auto flex-shrink-0">
+              <div className="flex justify-center">
+                <Button variant="default" className="cursor-pointer w-full sm:w-auto" size="lg">
+                  <WayfinderLink href={arnsUrl} target="_blank" rel="noopener noreferrer">
+                    <span className="flex items-center">
+                      Unique Perma Link <ExternalLink className="ml-2 h-4 w-4" />
+                    </span>
+                  </WayfinderLink>
+                </Button>
+              </div>
+              <div className="flex justify-center space-x-6 items-center">
+                <a href={`https://opensea.io/item/base/0x714a1a6ea4cb1d3f5199f51e813adf442aa8344f/${nft.id}`} target="_blank" rel="noopener noreferrer" aria-label="OpenSea">
+                  <img src={OpenseaLogo} alt="OpenSea Logo" className="h-6 w-auto" />
+                </a>
+                <a href={`https://magiceden.io/item-details/base/0x714a1a6ea4cb1d3f5199f51e813adf442aa8344f/${nft.id}`} target="_blank" rel="noopener noreferrer" aria-label="Magic Eden">
+                  <img src={MagicEdenLogo} alt="Magic Eden Logo" className="h-6 w-auto" />
+                </a>
+                <a href={`https://rarible.com/token/base/0xcfef83a405bb87c0aa88a83497669e81d01d1051:${nft.id}`} target="_blank" rel="noopener noreferrer" aria-label="Rarible">
+                  <img src={RaribleLogo} alt="Rarible Logo" className="h-6 w-auto" />
+                </a>
+              </div>
             </div>
           </div>
         </div>

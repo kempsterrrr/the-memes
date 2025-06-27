@@ -15,7 +15,7 @@
   "dependencies": {
     "@ar.io/sdk": "3.14.0",
     "@ar.io/wayfinder-core": "0.0.5-alpha.6",
-    "@ar.io/wayfinder-react": "0.0.5-alpha.7",
+    "@ar.io/wayfinder-react": "0.0.5-alpha.8",
     "@radix-ui/react-dialog": "^1.1.13",
     "@radix-ui/react-slot": "^1.2.2",
     "@tailwindcss/vite": "^4.1.6",
@@ -23,9 +23,11 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "dotenv": "^16.5.0",
+    "i": "^0.3.7",
     "lucide-react": "^0.510.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-helmet-async": "^2.0.5",
     "tailwind-merge": "^3.3.0",
     "tailwindcss": "^4.1.6",
     "uuid": "^11.1.0",
@@ -45,7 +47,8 @@
     "tw-animate-css": "^1.2.9",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.30.1",
-    "vite": "^6.3.5"
+    "vite": "^6.3.5",
+    "vite-plugin-node-polyfills": "^0.23.0"
   },
   "packageManager": "pnpm@10.10.0+sha512.d615db246fe70f25dcfea6d8d73dee782ce23e2245e3c4f6f888249fb568149318637dca73c2c5c8ef2a4ca0d5657fb9567188bfab47f566d1ee6ce987815c39"
 }
