@@ -2,7 +2,7 @@ import { readFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import { ARIO, ANT, ArweaveSigner } from '@ar.io/sdk';
-import { sanitizeUndername } from '../lib/utils.ts';
+// import { sanitizeUndername } from '../lib/utils.ts';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -25,7 +25,7 @@ const ARNS_NAME = process.env.ARNS_NAME;
 // create undernames for each item in the data named after the item
 // assign the arweave transactions inside each items image property to the relevant undername using setUndernameRecord
 
-const ario = ARIO.testnet({ signer: new ArweaveSigner(wallet) });
+const ario = ARIO.mainnet({ signer: new ArweaveSigner(wallet) });
 
 async function countItemsInCollection (data) {
     const count = Object.keys(data).length;
@@ -59,7 +59,7 @@ async function createAndAssignUndernames({ant, undername, transactionId, ttlSeco
     let txId;
     try {
         // Sanitize the undername using the shared function
-        const sanitizedUndername = sanitizeUndername(undername);
+        // const sanitizedUndername = sanitizeUndername(undername);
         
         // Extract just the transaction ID from the Arweave URL
         // Remove everything before and including the last '/'
@@ -67,12 +67,12 @@ async function createAndAssignUndernames({ant, undername, transactionId, ttlSeco
         
         const result = await ant.setUndernameRecord({
             name: ARNS_NAME,  // The parent ARNS name
-            undername: sanitizedUndername,
+            undername: undername,
             transactionId: txId,
             ttlSeconds: ttlSeconds,
         });
         
-        console.log(`Created undername ${sanitizedUndername} with transaction ID: ${txId}`);
+        console.log(`Created undername ${undername} with transaction ID: ${txId}`);
         return result;
     } catch (error) {
         console.error(`Error creating undername ${undername} with transaction ID: ${txId}:`, error);
@@ -103,12 +103,16 @@ async function main() {
     }
 
     // Use Promise.all to handle all async operations
-    const undernamePromises = Object.entries(data).map(async ([id, item]) => {
+    const undernamePromises = Object.entries(data).map(async ([id, item], index) => {
         // Sanitize the undername before passing it to createAndAssignUndernames
-        const sanitizedUndername = sanitizeUndername(item.name);
+        // const sanitizedUndername = sanitizeUndername(item.name);
+        const undernameNumber = index + 1;
+        const undernameNumberToString = undernameNumber.toString();
         const transactionId = item.image;
         const ttlSeconds = 900;
-        return createAndAssignUndernames({ant, undername: sanitizedUndername, transactionId, ttlSeconds});
+        // console.log(`Creating undername for item ${undernameNumberToString} of ${item.name} with TxId ${transactionId}`);
+        // return
+        return createAndAssignUndernames({ant, undername: undernameNumberToString, transactionId, ttlSeconds});
     });
 
     try {

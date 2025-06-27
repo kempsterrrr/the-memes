@@ -10,12 +10,12 @@
     "preview": "vite preview",
     "get-metadata": "node src/scripts/get-metadata.js",
     "create-and-assign-undernames": "node src/scripts/create-and-assign-undernames.js",
-    "deploy:arns": "pnpm run get-metadata && pnpm run create-and-assign-undernames && pnpm build && permaweb-deploy --arns-name $ARNS_NAME --deploy_key $DEPLOY_KEY --ario-process testnet"
+    "deploy:arns": "permaweb-deploy --arns-name $ARNS_NAME --deploy_key $DEPLOY_KEY"
   },
   "dependencies": {
-    "@ar.io/sdk": "3.11.0-alpha.8",
-    "@ar.io/wayfinder-core": "0.0.5-alpha.2",
-    "@ar.io/wayfinder-react": "0.0.5-alpha.2",
+    "@ar.io/sdk": "3.14.0",
+    "@ar.io/wayfinder-core": "0.0.5-alpha.6",
+    "@ar.io/wayfinder-react": "0.0.5-alpha.7",
     "@radix-ui/react-dialog": "^1.1.13",
     "@radix-ui/react-slot": "^1.2.2",
     "@tailwindcss/vite": "^4.1.6",

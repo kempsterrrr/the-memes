@@ -4,10 +4,11 @@ import collectionMetadata from "@/data/collection_metadata.json"
 import { Button } from "./ui/button"
 import WayfinerImage from "./wayfinder-image"
 import WayfinderLink from "./wayfinder-link"
-import { sanitizeUndername } from "@/lib/utils"
+// import { sanitizeUndername } from "@/lib/utils"
 
 type NFT = {
   id: string
+  index: number
   name: string
   created_by: string
   description: string
@@ -20,8 +21,11 @@ type NFT = {
   }
 }
 
-const nfts: NFT[] = Object.entries(collectionMetadata).map(([id, data]) => ({
+const nfts: NFT[] = Object.entries(collectionMetadata)
+.sort(([a], [b]) => parseInt(a, 10) - parseInt(b, 10))
+.map(([id, data], index) => ({
   id,
+  index,
   name: data.name,
   created_by: data.created_by,
   description: data.description,
@@ -32,15 +36,18 @@ const nfts: NFT[] = Object.entries(collectionMetadata).map(([id, data]) => ({
 
 function NFTDialog({ nft, open, onOpenChange }: { nft: NFT, open: boolean, onOpenChange: (open: boolean) => void }) {
   // Use the sanitization function from utils
-  const sanitizedUndername = sanitizeUndername(nft.name)
-  const arnsUrl = `${sanitizedUndername}_manifoldtest`
+  // const sanitizedUndername = sanitizeUndername(nft.name)
+  const nftNumber = nft.index + 1
+  const arnsUrl = `${nftNumber.toString()}_anoncast-x-manifold`
   
-  console.log('🏷️  Constructing ArNS name for NFT:', nft.name, '→', sanitizedUndername, '→', arnsUrl)
+  // console.log('🏷️  Constructing ArNS name for NFT:', nft.name, '→', sanitizedUndername, '→', arnsUrl)
   console.log('🔢  NFT ID:', nft.id, 'Is First Item:', nft.id === '1')
   
   // Add timing information to see if there's a difference in when first vs other items resolve
   const dialogOpenTime = Date.now()
   console.log('⏰  Dialog opened at:', dialogOpenTime, 'for NFT:', nft.name)
+
+  console.log(`arns ULR is ${arnsUrl}`)
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -104,11 +111,11 @@ export function NFTGallery() {
 
   return (
     <>
-      <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 [column-fill:_balance]">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {nfts.map((nft) => (
           <div
             key={nft.id}
-            className="group relative overflow-hidden rounded-lg border bg-background shadow-sm transition-all hover:shadow-md dark:hover:shadow-lg dark:hover:shadow-primary/5 mb-6 break-inside-avoid"
+            className="group relative overflow-hidden rounded-lg border bg-background shadow-sm transition-all hover:shadow-md dark:hover:shadow-lg dark:hover:shadow-primary/5"
             onClick={() => setSelectedNFT(nft)}
           >
             <div 
