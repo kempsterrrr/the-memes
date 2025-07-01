@@ -12,11 +12,11 @@ importers:
         specifier: 3.14.0
         version: 3.14.0(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       '@ar.io/wayfinder-core':
-        specifier: 0.0.5-alpha.6
-        version: 0.0.5-alpha.6(@ar.io/sdk@3.14.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))(bufferutil@4.0.9)(utf-8-validate@5.0.10)
+        specifier: 1.0.0
+        version: 1.0.0(@ar.io/sdk@3.14.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       '@ar.io/wayfinder-react':
-        specifier: 0.0.5-alpha.8
-        version: 0.0.5-alpha.8(@ar.io/sdk@3.14.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))(bufferutil@4.0.9)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(utf-8-validate@5.0.10)
+        specifier: 1.0.0
+        version: 1.0.0(@ar.io/sdk@3.14.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))(bufferutil@4.0.9)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(utf-8-validate@5.0.10)
       '@radix-ui/react-dialog':
         specifier: ^1.1.13
         version: 1.1.13(@types/react-dom@19.1.5(@types/react@19.1.4))(@types/react@19.1.4)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -129,13 +129,13 @@ packages:
     engines: {node: '>=18'}
     hasBin: true
 
-  '@ar.io/wayfinder-core@0.0.5-alpha.6':
-    resolution: {integrity: sha512-UESP5PEeC4bV9M+aCeDZhqZWpcCow6R2TXnJdspZBHaFyQST+d7QjSdFro3lyYxD2w9dXa8Y4BcjgEQPcRgEOw==}
+  '@ar.io/wayfinder-core@1.0.0':
+    resolution: {integrity: sha512-XP+VgkSLnHolQycF4nesj2wk6nRHd5Rq5dZaeiRS9MXAWi67eYpSJw1MmySVG1ljEuDlHEcF8O4LUZr+pHB2Vg==}
     peerDependencies:
       '@ar.io/sdk': '>=3.12.0'
 
-  '@ar.io/wayfinder-react@0.0.5-alpha.8':
-    resolution: {integrity: sha512-1kOLqbmP95BwScWTYJhUJJDTegl9Sh3OOe+uKQBwonErFTLOjnzj2MzX+0MEEws/VVoHLxec09EZh0D8DUaTHQ==}
+  '@ar.io/wayfinder-react@1.0.0':
+    resolution: {integrity: sha512-ryNF8kyRSaUvXCjIExEioyynJfSuvRtcpnu1rVZK50hx0hNmAQfGHwp7xFqVA24RC4B2KhW0Htftw1sumeDCiA==}
     peerDependencies:
       react: ^18.0.0
       react-dom: ^18.0.0
@@ -3529,7 +3529,7 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@ar.io/wayfinder-core@0.0.5-alpha.6(@ar.io/sdk@3.14.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))(bufferutil@4.0.9)(utf-8-validate@5.0.10)':
+  '@ar.io/wayfinder-core@1.0.0(@ar.io/sdk@3.14.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))(bufferutil@4.0.9)(utf-8-validate@5.0.10)':
     dependencies:
       '@ar.io/sdk': 3.14.0(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       '@dha-team/arbundles': 1.0.3(bufferutil@4.0.9)(utf-8-validate@5.0.10)
@@ -3549,9 +3549,9 @@ snapshots:
       - encoding
       - utf-8-validate
 
-  '@ar.io/wayfinder-react@0.0.5-alpha.8(@ar.io/sdk@3.14.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))(bufferutil@4.0.9)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(utf-8-validate@5.0.10)':
+  '@ar.io/wayfinder-react@1.0.0(@ar.io/sdk@3.14.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))(bufferutil@4.0.9)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(utf-8-validate@5.0.10)':
     dependencies:
-      '@ar.io/wayfinder-core': 0.0.5-alpha.6(@ar.io/sdk@3.14.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))(bufferutil@4.0.9)(utf-8-validate@5.0.10)
+      '@ar.io/wayfinder-core': 1.0.0(@ar.io/sdk@3.14.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
     transitivePeerDependencies:

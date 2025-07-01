@@ -1,5 +1,5 @@
-import { WayfinderProvider } from '@ar.io/wayfinder-react';
-import { NetworkGatewaysProvider, SimpleCacheGatewaysProvider } from '@ar.io/wayfinder-core';
+import { WayfinderProvider, LocalStorageGatewaysProvider } from '@ar.io/wayfinder-react';
+import { NetworkGatewaysProvider } from '@ar.io/wayfinder-core';
 import { ARIO } from '@ar.io/sdk';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { NFTGallery } from "@/components/nft-gallery"
@@ -15,11 +15,11 @@ import BaseLogo from "@/assets/base-logo.svg"
 function App() {
   
   return (
-    <WayfinderProvider gatewaysProvider={new SimpleCacheGatewaysProvider({ 
-      // ttlSeconds: 3600,
+    <WayfinderProvider gatewaysProvider={new LocalStorageGatewaysProvider({ 
+      ttlSeconds: 3600, // cache the gateways locally for 1 hour to avoid unnecessary network requests
       gatewaysProvider: new NetworkGatewaysProvider({ 
          ario: ARIO.mainnet(), 
-         limit: 3, // target the top 3 gateways
+         limit: 10, // target the top 3 gateways
          sortBy: 'operatorStake',
          sortOrder: 'desc',
        }), 
