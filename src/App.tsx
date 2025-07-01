@@ -8,6 +8,9 @@ import OpenseaLogo from "/opensea-logo.svg"
 import RaribleLogo from "/rarible-logo.svg"
 import PoweredByARIO from "/powered-by-ario.svg"
 import MagicEdenLogo from "/magic-eden-logo.svg"
+import ManifoldLogo from "@/assets/manifold-logo.svg"
+import AnoncastLogo from "@/assets/anon-logo.png"
+import BaseLogo from "@/assets/base-logo.svg"
 
 function App() {
   
@@ -49,6 +52,14 @@ function App() {
               <a href="/" className="flex items-center space-x-2">
                 <span className="text-xl font-bold tracking-tighter">{collectionMetadata[1].created_by}</span>
               </a>
+              <div className="flex items-center gap-4">
+                <a href="https://manifold.xyz/" target="_blank" rel="noopener noreferrer" aria-label="Manifold">
+                  <img src={ManifoldLogo} alt="Manifold Logo" className="h-8 w-auto rounded" />
+                </a>
+                <a href="https://anoncast.org/" target="_blank" rel="noopener noreferrer" aria-label="Manifold">
+                  <img src={AnoncastLogo} alt="Manifold Logo" className="h-8 w-auto rounded" />
+                </a>
+              </div>
             </div>
           </header>
           <main className="flex-1">
@@ -56,14 +67,44 @@ function App() {
               <div className="mx-auto flex max-w-[58rem] flex-col items-center justify-center gap-4 text-center">
                 <h1 className="text-3xl font-bold leading-tight tracking-tighter md:text-5xl lg:text-6xl lg:leading-[1.1]">
                   Anoncast X Manifold
-                </h1> 
+                </h1>
+                <div className="flex flex-wrap items-center justify-center gap-4 text-sm py-2">
+                  <span className="flex items-center gap-1">
+                    <span className="font-medium">{Object.keys(collectionMetadata).length}</span> works
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <a href="https://basescan.org/address/0x714a1a6ea4cb1d3f5199f51e813adf442aa8344f" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1">
+                      <img src={BaseLogo} alt="Base Logo" className="h-4 w-4 mr-1" />
+                      <span className="font-medium">Base</span>
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6m5-3h3m0 0v3m0-3L10 14"/></svg>
+                    </a>
+                  </span>
+                  {/* <span className="flex items-center gap-1">
+                    <span className="font-mono text-xs sm:text-sm break-all">0x714a1a6ea4cb1d3f5199f51e813adf442aa8344f</span>
+                    <button
+                      className="ml-1 p-1 hover:bg-muted rounded"
+                      title="Copy address"
+                      onClick={() => {
+                        navigator.clipboard.writeText('0x714a1a6ea4cb1d3f5199f51e813adf442aa8344f');
+                      }}
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="9" y="9" width="13" height="13" rx="2" strokeWidth="2"/><rect x="3" y="3" width="13" height="13" rx="2" strokeWidth="2"/></svg>
+                    </button>
+                    <a
+                      href="https://basescan.org/address/0x714a1a6ea4cb1d3f5199f51e813adf442aa8344f"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="ml-1 p-1 hover:bg-muted rounded"
+                      title="View on explorer"
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6m5-3h3m0 0v3m0-3L10 14"/></svg>
+                    </a>
+                  </span> */}
+                </div>
                 <p className="max-w-[46rem] text-lg text-muted-foreground sm:text-xl">
                 First NFT from @anoncast_ on manifold.xyz for commemorating first anonymous NFT released!
                 </p>
                 <div className="flex items-center justify-center gap-4 pt-4">
-                  {/* <a href="https://manifold.xyz/@anoncast/id/4205381872" target="_blank" rel="noopener noreferrer" aria-label="OpenSea">
-                    <img src={ManifoldLogo} alt="OpenSea Logo" className="h-12 w-auto rounded" />
-                  </a> */}
                   <a href="https://rarible.com/collection/base/0xcfef83a405bb87c0aa88a83497669e81d01d1051/items" target="_blank" rel="noopener noreferrer" aria-label="Rarible">
                     <img src={RaribleLogo} alt="Rarible Logo" className="h-12 w-auto" />
                   </a>

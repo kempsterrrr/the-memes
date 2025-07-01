@@ -130,7 +130,7 @@ function NFTDialog({ nft, open, onOpenChange }: { nft: NFT, open: boolean, onOpe
                 <Button variant="default" className="cursor-pointer w-full sm:w-auto" size="lg">
                   <WayfinderLink href={arnsUrl} target="_blank" rel="noopener noreferrer">
                     <span className="flex items-center">
-                      Unique Perma Link <ExternalLink className="ml-2 h-4 w-4" />
+                      Perma Link <ExternalLink className="ml-2 h-4 w-4" />
                     </span>
                   </WayfinderLink>
                 </Button>

@@ -1,1 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="74 177 342 160" class="size-11" data-testid="logo-mark"><g><g><path className="fill-white" d="M415.954 225.521L367.36 177H74L118.688 221.607H353.845L269.719 305.549L229.697 265.613H162.846L233.841 336.441H300.692L269.81 305.64H336.478L415.954 225.521Z"></path></g></g></svg>
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="512" height="512" fill="white"/>
+  <path d="M402 243.387L360.647 202H111L149.029 240.049H349.146L277.555 311.65L243.496 277.586H186.607L247.024 338H303.913L277.632 311.727H334.367L402 243.387Z" fill="black"/>
+</svg>
