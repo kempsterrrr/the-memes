@@ -101,7 +101,7 @@ export default function Home() {
           <div className="flex items-center justify-center gap-4 pt-4">
             <Link to="/gallery">
               <Button size="lg">
-                View Gallery
+                ENTER
               </Button>
             </Link>
           </div>
