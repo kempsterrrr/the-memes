@@ -23,7 +23,7 @@ export default function Home() {
       
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-24 lg:py-32">
         <div className="mx-auto flex max-w-[58rem] flex-col items-center justify-center gap-4 text-center">
-          <pre className="text-xs font-mono text-gray-600 whitespace-pre leading-tight">
+          <pre className="text-[8px] font-mono text-gray-600 whitespace-pre leading-[0.7]">
 {`//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                              //
 //                                                                                                                              //
@@ -88,6 +88,17 @@ export default function Home() {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////`}
           </pre>
           <div className="flex items-center justify-center gap-4 pt-4">
+            <Link to="/gallery">
+              <button className="font-mono text-sm bg-black text-white border-2 border-white px-6 py-3 hover:bg-white hover:text-black transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black">
+                <pre className="whitespace-pre">
+{`┌─────────────┐
+│    ENTER    │
+└─────────────┘`}
+                </pre>
+              </button>
+            </Link>
+          </div>
+          <div className="flex items-center justify-center gap-4 pt-4">
             <a href="https://rarible.com/collection/base/0xcfef83a405bb87c0aa88a83497669e81d01d1051/items" target="_blank" rel="noopener noreferrer" aria-label="Rarible">
               <img src={RaribleLogo} alt="Rarible Logo" className="h-12 w-auto" />
             </a>
@@ -97,13 +108,6 @@ export default function Home() {
             <a href="https://opensea.io/collection/anonworld" target="_blank" rel="noopener noreferrer" aria-label="OpenSea">
               <img src={OpenseaLogo} alt="OpenSea Logo" className="h-12 w-auto rounded" />
             </a>
-          </div>
-          <div className="flex items-center justify-center gap-4 pt-4">
-            <Link to="/gallery">
-              <Button size="lg">
-                ENTER
-              </Button>
-            </Link>
           </div>
         </div>
       </section>
