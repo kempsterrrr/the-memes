@@ -19,8 +19,9 @@ type NFT = {
   image_url: string
   attributes: {
     trait_type: string
-    value: string
-    display_type: string
+    value: string | number
+    display_type?: string
+    max_value?: string | number
   }[]
   image_details: {
     width: number
@@ -34,7 +35,7 @@ export default function Item() {
   const navigate = useNavigate()
 
   // Find the NFT by ID
-  const nftData = id ? collectionMetadata[id] : null
+  const nftData = id ? (collectionMetadata as any)[id] : null
   
   if (!nftData) {
     return (
@@ -138,7 +139,7 @@ export default function Item() {
                 {nft.attributes.map((attribute, index) => (
                   <div key={index} className="flex flex-col sm:flex-row sm:justify-between text-sm gap-1">
                     <span className="text-muted-foreground break-words">{attribute.trait_type}</span>
-                    <span className="font-medium break-words">{attribute.value}</span>
+                    <span className="font-medium break-words">{String(attribute.value)}</span>
                   </div>
                 ))}
               </div>

@@ -14,8 +14,9 @@ type NFT = {
   image_url: string
   attributes: {
     trait_type: string
-    value: string
-    display_type: string
+    value: string | number
+    display_type?: string
+    max_value?: string | number
   }[]
   image_details: {
     width: number

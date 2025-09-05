@@ -1,4 +1,3 @@
-import { Button } from '@/components/ui/button';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import RaribleLogo from "/rarible-logo.svg"
@@ -23,7 +22,7 @@ export default function Home() {
       
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-24 lg:py-32">
         <div className="mx-auto flex max-w-[58rem] flex-col items-center justify-center gap-4 text-center">
-          <pre className="text-[8px] font-mono text-gray-600 whitespace-pre leading-[0.7]">
+          <pre className="text-[10px] font-mono text-gray-600 whitespace-pre leading-[0.7]">
 {`//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                                                                              //
 //                                                                                                                              //
