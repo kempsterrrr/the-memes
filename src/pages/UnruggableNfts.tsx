@@ -16,97 +16,110 @@ export default function UnruggableNfts() {
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
       </Helmet>
       
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-24 lg:py-32">
-        <div className="mx-auto max-w-4xl">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold tracking-tight sm:text-6xl mb-6">
-              Unruggable NFTs
-            </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Our goal is to build on top of 6529's The Memes and make it truly unruggable, ensuring all artwork is easily accessible even if 6529.io goes offline.
-            </p>
-          </div>
+      <div className="min-h-screen bg-background">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+          <div className="mx-auto max-w-4xl">
 
-          <div className="prose prose-lg max-w-none">
-            <div className="grid gap-8 md:grid-cols-2 mb-12">
-              <div className="space-y-4">
-                <h2 className="text-2xl font-semibold">6529's decetralization efforts</h2>
-                <p className="text-muted-foreground">
-                6529 is a pioneer in the NFT space, embracing decentralization and permanance, whilst giving 1000s of artists a platform to showcase their work and embracing <a href="https://6529.io/about/data-decentralization" className="text-primary underline underline-offset-4 hover:text-foreground transition-colors duration-200">data decentralization</a>.
-                </p>
-              </div>
+            {/* Page Title */}
+            <h1 className="text-4xl md:text-5xl font-bold mb-8">
+              <span className="font-thin">Unruggable</span> NFTs
+            </h1>
+
+            {/* Introduction */}
+            <div className="prose prose-lg max-w-none mb-12">
+              <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+                Our goal is to build on top of 6529's The Memes and make it truly unruggable, ensuring all artwork is easily accessible even if 6529.io goes offline.
+              </p>
               
-              <div className="space-y-4">
-                <h2 className="text-2xl font-semibold">How we've take this further</h2>
-                <p className="text-muted-foreground">
-                We've built on top of 6529's work on Arweave, providing decentralized hosting of the collection, it's metadata and images. Anyone will now easily be able to access the collection via human readable URLs, even if 6529.io goes offline.
-                </p>
-              </div>
+              <h2 className="text-2xl font-semibold mb-4">6529's Decentralization Efforts</h2>
+              <p className="text-muted-foreground leading-relaxed mb-6">
+                6529 is a pioneer in the NFT space, embracing <a 
+                  href="https://6529.io/about/data-decentralization" 
+                  className="text-primary underline underline-offset-4 hover:text-foreground transition-colors duration-200"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  data decentralization
+                </a> and permanence on Arweave, whilst giving thousands of artists a platform to showcase their work.
+              </p>
+
+              <h2 className="text-2xl font-semibold mb-4">How We've Taken This Further</h2>
+              <p className="text-muted-foreground leading-relaxed">
+                We've built on top of 6529's work on Arweave, providing decentralized hosting of the collection, its metadata and images. Anyone will now easily be able to access the collection via human readable URLs, forever.
+              </p>
             </div>
 
-            <div className="bg-muted/50 rounded-lg p-8 mb-12">
-              <h2 className="text-2xl font-semibold mb-4">Arweave Name System (ArNS)</h2>
-              <p className="text-muted-foreground mb-4">
-                The Memes collection is built on Arweave's permanent storage network with ArNS naming, 
-                ensuring your NFTs will never disappear, break, or become inaccessible due to server issues.
+            <p className="text-muted-foreground leading-relaxed mb-8">
+               This explain how we've achived unruggability for 6529's The Memes collection.
               </p>
-              <ul className="space-y-2 text-muted-foreground">
-                <li>• <strong>Permanent Storage:</strong> No expiration dates, no monthly fees</li>
-                <li>• <strong>Truly Decentralized:</strong> No single point of failure</li>
-                <li>• <strong>Censorship Resistant:</strong> Cannot be taken down or modified</li>
-                <li>• <strong>Multiple Gateways:</strong> Always accessible through various entry points</li>
-                <li>• <strong>Immutable Metadata:</strong> Once stored, never changes</li>
+
+            {/* ArNS Section */}
+            <div className="prose prose-lg max-w-none mb-12">
+              <h2 className="text-2xl font-semibold mb-4">Arweave (Decetralized storage)</h2>
+              
+              <ul className="space-y-2 text-muted-foreground mb-8">
+                <li>• All NFT images and metadata are already stored on Arweave (s/o 6259).</li>
+                <li>• We scrape the 'uri' function from the collecton contract each day at midnight UTC to source this data.</li>
               </ul>
             </div>
 
-            <div className="space-y-6">
-              <h2 className="text-2xl font-semibold">How We Achieve Unruggability</h2>
+            {/* ArNS Section */}
+            <div className="prose prose-lg max-w-none mb-12">
+              <h2 className="text-2xl font-semibold mb-4">Arweave Name System (Decentralized Hosting)</h2>
               
-              <div className="space-y-4">
-                <h3 className="text-xl font-medium">1. Permanent Storage on Arweave</h3>
-                <p className="text-muted-foreground">
-                  All metadata and images are stored directly on Arweave's blockchain, not on 
-                  centralized servers. This means your NFT data is permanent and cannot be 
-                  deleted or modified once uploaded.
-                </p>
-              </div>
-
-              <div className="space-y-4">
-                <h3 className="text-xl font-medium">2. Multiple Gateway Access</h3>
-                <p className="text-muted-foreground">
-                  Our Wayfinder system automatically routes to the fastest available Arweave 
-                  gateway, ensuring your NFTs are always accessible even if one gateway goes down.
-                </p>
-              </div>
-
-              <div className="space-y-4">
-                <h3 className="text-xl font-medium">3. Immutable Metadata</h3>
-                <p className="text-muted-foreground">
-                  Once your NFT metadata is stored on Arweave, it cannot be changed, updated, 
-                  or corrupted. The hash of your content is permanently recorded on the blockchain.
-                </p>
-              </div>
-
-              <div className="space-y-4">
-                <h3 className="text-xl font-medium">4. No Single Point of Failure</h3>
-                <p className="text-muted-foreground">
-                  Unlike traditional NFTs that depend on a single server or IPFS gateway, 
-                  our NFTs are distributed across Arweave's global network of miners and gateways.
-                </p>
-              </div>
+              <ul className="space-y-2 text-muted-foreground mb-8">
+                <li>• We created a simple static gallery site to host the collection.</li>
+                <li>• The Arewave collection data is fed into a this site to generate the gallery which is hosted on <a 
+                  href="https://ar.io/arns" 
+                  className="text-primary underline underline-offset-4 hover:text-foreground transition-colors duration-200"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  ArNS
+                </a></li>
+                <li>• We also create a unique URL directly to the asset and it's metadata.</li>
+              </ul>
             </div>
 
-            <div className="mt-12 text-center">
-              <Link 
-                to="/" 
-                className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background bg-primary text-primary-foreground hover:bg-primary/90 h-10 py-2 px-4"
-              >
-                Back to Home
+            {/* ArNS Section */}
+            <div className="prose prose-lg max-w-none mb-12">
+              <h2 className="text-2xl font-semibold mb-4">AR.IO Network (Decentralized Access)</h2>
+              
+              <ul className="space-y-2 text-muted-foreground mb-8">
+                <li>• This site and all URLs built on ArNS are available as subdomains of over 600 gateways in the <a 
+                  href="https://ar.io" 
+                  className="text-primary underline underline-offset-4 hover:text-foreground transition-colors duration-200"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  AR.IO Network
+                </a>.</li>
+                <li>• All Arweave data on the site is requested via the <a 
+                  href="https://github.com/ar-io/wayfinder/" 
+                  className="text-primary underline underline-offset-4 hover:text-foreground transition-colors duration-200"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Wayfinder Protocol
+                </a>, which takes in ar://txid or ar://arns and automatically routes to the fastest available gateway, avoiding hard-coded Arweave.net URLs and ensuring data will always be accessible.</li>
+              </ul>
+            </div> 
+
+            {/* Back to Home */}
+            <div className="text-center">
+              <Link to="/">
+                <button className="font-mono text-sm bg-black text-white border-2 border-white px-6 py-3 hover:bg-white hover:text-black transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black">
+                  <pre className="whitespace-pre">
+{`┌─────────────┐
+│  BACK HOME   │
+└─────────────┘`}
+                  </pre>
+                </button>
               </Link>
             </div>
           </div>
         </div>
-      </section>
+      </div>
     </>
   );
 }
