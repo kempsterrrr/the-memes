@@ -84,88 +84,95 @@ export default function Item() {
         </div>
 
         {/* Main content */}
-        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-          {/* Image section */}
-          <div className="relative aspect-square lg:aspect-auto lg:h-[600px] bg-black rounded-lg overflow-hidden flex-shrink-0">
-            <WayfinerImage
-              src={nft.image_url.replace(/https:\/\/arweave\.net\//g, '')}
-              alt={nft.name}
-              className="h-full w-full object-cover"
-            />
-          </div>
-          
-          {/* Details section */}
-          <div className="flex flex-col space-y-6">
-            {/* Header */}
-            <div>
-              <h1 className="text-3xl lg:text-4xl font-bold leading-tight mb-2">{nft.name}</h1>
-              <div className="text-lg font-medium text-muted-foreground mb-4">by {nft.created_by}</div>
+        <div className="max-w-6xl mx-auto">
+          {/* Two-column layout for image and details */}
+          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 mb-12">
+            {/* Image section */}
+            <div className="relative aspect-square lg:aspect-auto lg:h-[600px] bg-black rounded-lg overflow-hidden flex-shrink-0">
+              <WayfinerImage
+                src={nft.image_url.replace(/https:\/\/arweave\.net\//g, '')}
+                alt={nft.name}
+                className="h-full w-full object-cover"
+              />
             </div>
-
-            {/* About section */}
-            <div>
-              <h2 className="text-lg font-semibold mb-3">About this artwork</h2>
-              <p className="text-muted-foreground leading-relaxed">
-                {nft.description}
-              </p>
-            </div>
-
-            {/* Artwork Details */}
-            <div className="border-t pt-6">
-              <h2 className="text-lg font-semibold mb-3">Info</h2>
-              <div className="space-y-3 bg-muted/40 rounded-md p-4">
-                <div className="flex flex-col sm:flex-row sm:justify-between text-sm gap-1">
-                  <span className="text-muted-foreground text-xs sm:text-sm break-all">0x714a1a6ea4cb1d3f5199f51e813adf442aa8344f</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-muted-foreground">Base</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-muted-foreground">{`#${nft.id}`}</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-muted-foreground">ERC-721</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-muted-foreground">{nft.image_details.width} × {nft.image_details.height}</span>
-                </div>
+            
+            {/* Details section */}
+            <div className="flex flex-col space-y-6">
+              {/* Header */}
+              <div>
+                <h1 className="text-3xl lg:text-4xl font-bold leading-tight mb-2">{nft.name}</h1>
+                <div className="text-lg font-medium text-muted-foreground mb-4">by {nft.created_by}</div>
               </div>
-            </div>
 
-            {/* Artwork Attributes */}
-            <div className="border-t pt-6">
-              <h2 className="text-lg font-semibold mb-3">Attributes</h2>
-              <div className="space-y-3 bg-muted/40 rounded-md p-4">
-                {nft.attributes.map((attribute, index) => (
-                  <div key={index} className="flex flex-col sm:flex-row sm:justify-between text-sm gap-1">
-                    <span className="text-muted-foreground break-words">{attribute.trait_type}</span>
-                    <span className="font-medium break-words">{String(attribute.value)}</span>
+              {/* About section */}
+              <div>
+                <h2 className="text-lg font-semibold mb-3">About this artwork</h2>
+                <p className="text-muted-foreground leading-relaxed">
+                  {nft.description}
+                </p>
+              </div>
+
+              {/* Artwork Details */}
+              <div className="border-t pt-6">
+                <h2 className="text-lg font-semibold mb-3">Info</h2>
+                <div className="space-y-3 bg-muted/40 rounded-md p-4">
+                  <div className="flex flex-col sm:flex-row sm:justify-between text-sm gap-1">
+                    <span className="text-muted-foreground text-xs sm:text-sm break-all">0x714a1a6ea4cb1d3f5199f51e813adf442aa8344f</span>
                   </div>
-                ))}
+                  <div className="flex justify-between text-sm">
+                    <span className="text-muted-foreground">Base</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-muted-foreground">{`#${nft.id}`}</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-muted-foreground">ERC-721</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-muted-foreground">{nft.image_details.width} × {nft.image_details.height}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Action buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                <Button variant="default" className="cursor-pointer w-full sm:w-auto" size="lg">
+                  <WayfinderLink href={arnsUrl} target="_blank" rel="noopener noreferrer">
+                    <span className="flex items-center">
+                      Perma Link <ExternalLink className="ml-2 h-4 w-4" />
+                    </span>
+                  </WayfinderLink>
+                </Button>
+                
+                <div className="flex justify-center sm:justify-start space-x-6 items-center">
+                  <a href={`https://opensea.io/item/base/0x714a1a6ea4cb1d3f5199f51e813adf442aa8344f/${nft.id}`} target="_blank" rel="noopener noreferrer" aria-label="OpenSea">
+                    <img src={OpenseaLogo} alt="OpenSea Logo" className="h-6 w-auto" />
+                  </a>
+                  <a href={`https://magiceden.io/item-details/base/0x714a1a6ea4cb1d3f5199f51e813adf442aa8344f/${nft.id}`} target="_blank" rel="noopener noreferrer" aria-label="Magic Eden">
+                    <img src={MagicEdenLogo} alt="Magic Eden Logo" className="h-6 w-auto" />
+                  </a>
+                  <a href={`https://rarible.com/token/base/0xcfef83a405bb87c0aa88a83497669e81d01d1051:${nft.id}`} target="_blank" rel="noopener noreferrer" aria-label="Rarible">
+                    <img src={RaribleLogo} alt="Rarible Logo" className="h-6 w-auto" />
+                  </a>
+                </div>
               </div>
             </div>
+          </div>
 
-            {/* Action buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 pt-6">
-              <Button variant="default" className="cursor-pointer w-full sm:w-auto" size="lg">
-                <WayfinderLink href={arnsUrl} target="_blank" rel="noopener noreferrer">
-                  <span className="flex items-center">
-                    Perma Link <ExternalLink className="ml-2 h-4 w-4" />
-                  </span>
-                </WayfinderLink>
-              </Button>
-              
-              <div className="flex justify-center sm:justify-start space-x-6 items-center">
-                <a href={`https://opensea.io/item/base/0x714a1a6ea4cb1d3f5199f51e813adf442aa8344f/${nft.id}`} target="_blank" rel="noopener noreferrer" aria-label="OpenSea">
-                  <img src={OpenseaLogo} alt="OpenSea Logo" className="h-6 w-auto" />
-                </a>
-                <a href={`https://magiceden.io/item-details/base/0x714a1a6ea4cb1d3f5199f51e813adf442aa8344f/${nft.id}`} target="_blank" rel="noopener noreferrer" aria-label="Magic Eden">
-                  <img src={MagicEdenLogo} alt="Magic Eden Logo" className="h-6 w-auto" />
-                </a>
-                <a href={`https://rarible.com/token/base/0xcfef83a405bb87c0aa88a83497669e81d01d1051:${nft.id}`} target="_blank" rel="noopener noreferrer" aria-label="Rarible">
-                  <img src={RaribleLogo} alt="Rarible Logo" className="h-6 w-auto" />
-                </a>
-              </div>
+          {/* Attributes section - full width grid */}
+          <div className="border-t pt-8">
+            <h2 className="text-2xl font-semibold mb-6">Attributes</h2>
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+              {nft.attributes.map((attribute, index) => (
+                <div key={index} className="bg-muted/40 rounded-lg p-4 border border-border/50 hover:bg-muted/60 transition-colors">
+                  <div className="text-xs text-muted-foreground uppercase tracking-wide mb-1 break-words">
+                    {attribute.trait_type}
+                  </div>
+                  <div className="font-medium text-sm break-words">
+                    {String(attribute.value)}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
